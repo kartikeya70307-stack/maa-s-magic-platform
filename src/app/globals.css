@@ -1,0 +1,223 @@
+@import "tailwindcss";
+
+@theme {
+  /* warm cream — like fresh roti dough & cardamom milk */
+  --color-cream-50: #fffaf0;
+  --color-cream-100: #fbf1dd;
+  --color-cream-200: #f3e2c4;
+  --color-cream-300: #e9cfa3;
+  --color-cream-400: #dbb477;
+
+  /* ink — roasted brown, like a well-seasoned kadhai */
+  --color-ink-950: #1e0f04;
+  --color-ink-900: #2c1a0b;
+  --color-ink-800: #3d2716;
+  --color-ink-700: #54371f;
+  --color-ink-600: #6d4c2f;
+  --color-ink-500: #8a6a4b;
+  --color-ink-400: #ab8d6e;
+  --color-ink-300: #c6ad92;
+
+  /* flame — sindoor / paprika / marigold sunset */
+  --color-flame-50: #fdf0e8;
+  --color-flame-100: #fbdfca;
+  --color-flame-200: #f6ba8e;
+  --color-flame-300: #ef9154;
+  --color-flame-400: #e86b2c;
+  --color-flame-500: #d94e14;
+  --color-flame-600: #b93e08;
+  --color-flame-700: #95330e;
+  --color-flame-800: #752a13;
+
+  /* marigold — genda phool */
+  --color-marigold-200: #fbe2a4;
+  --color-marigold-300: #f8c558;
+  --color-marigold-400: #efa921;
+  --color-marigold-500: #d98f06;
+
+  /* mehendi — fresh dhaniya */
+  --color-mehendi-100: #e2f0e2;
+  --color-mehendi-400: #4d9a5f;
+  --color-mehendi-500: #2e7d46;
+  --color-mehendi-600: #22663a;
+
+  --shadow-warm: 0 24px 60px -24px rgba(87, 43, 9, 0.35);
+  --shadow-flame: 0 18px 45px -16px rgba(217, 78, 20, 0.45);
+  --shadow-card: 0 10px 35px -14px rgba(87, 43, 9, 0.22);
+
+  --animate-marquee: marquee 32s linear infinite;
+  --animate-float: float 7s ease-in-out infinite;
+  --animate-float-slow: float 10s ease-in-out 1.2s infinite;
+  --animate-steam: steam 3.2s ease-in-out infinite;
+  --animate-spin-slower: spin 22s linear infinite;
+  --animate-kenburns: kenburns 14s ease-in-out infinite alternate;
+
+  @keyframes kenburns {
+    from {
+      transform: scale(1.01) translate(0, 0);
+    }
+    to {
+      transform: scale(1.14) translate(-1.6%, -1.4%);
+    }
+  }
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0px) rotate(var(--float-rot, 0deg));
+    }
+    50% {
+      transform: translateY(-14px) rotate(var(--float-rot, 0deg));
+    }
+  }
+  @keyframes steam {
+    0% {
+      opacity: 0;
+      transform: translateY(6px) scaleX(1);
+    }
+    30% {
+      opacity: 0.9;
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(-22px) scaleX(1.6);
+    }
+  }
+}
+
+@theme inline {
+  --font-display: var(--font-fraunces), Georgia, "Times New Roman", serif;
+  --font-hindi: var(--font-tiro), Georgia, serif;
+  --font-sans: var(--font-dmsans), ui-sans-serif, system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-cream-100);
+}
+
+::selection {
+  background: var(--color-flame-200);
+  color: var(--color-ink-900);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-cream-100);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-ink-300);
+  border-radius: 999px;
+  border: 2px solid var(--color-cream-100);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-flame-400);
+}
+
+/* ————— signature niceties ————— */
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* soft film grain over the whole experience */
+.grain::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+  mix-blend-mode: multiply;
+}
+
+/* mahal-style arch frames */
+.arch {
+  border-radius: 999px 999px 28px 28px;
+}
+.arch-sm {
+  border-radius: 999px 999px 18px 18px;
+}
+
+/* marigold dotted saree-border strip */
+.saree-border {
+  height: 10px;
+  background-image: radial-gradient(
+    circle at 6px 5px,
+    var(--color-marigold-400) 3px,
+    transparent 3.5px
+  );
+  background-size: 18px 10px;
+  background-repeat: repeat-x;
+}
+.saree-border-flame {
+  height: 10px;
+  background-image: radial-gradient(
+    circle at 6px 5px,
+    var(--color-flame-400) 3px,
+    transparent 3.5px
+  );
+  background-size: 18px 10px;
+  background-repeat: repeat-x;
+}
+
+/* hand-drawn dashed divider */
+.dashed-line {
+  background-image: linear-gradient(
+    to right,
+    var(--color-ink-300) 45%,
+    transparent 45%
+  );
+  background-size: 14px 1.5px;
+  background-repeat: repeat-x;
+  height: 1.5px;
+}
+
+/* outlined display type */
+.text-outline {
+  -webkit-text-stroke: 1.5px var(--color-cream-300);
+  color: transparent;
+}
+.text-outline-flame {
+  -webkit-text-stroke: 1.5px rgba(232, 107, 44, 0.35);
+  color: transparent;
+}
+
+/* steam wisps above food */
+.steam-wisp {
+  position: absolute;
+  bottom: 100%;
+  width: 6px;
+  height: 26px;
+  border-radius: 999px;
+  background: linear-gradient(
+    to top,
+    rgba(87, 43, 9, 0.35),
+    transparent
+  );
+  filter: blur(3px);
+  animation: steam 3.2s ease-in-out infinite;
+}
+
+input:focus,
+textarea:focus,
+select:focus,
+button:focus-visible {
+  outline: 2px solid var(--color-marigold-400);
+  outline-offset: 2px;
+}
